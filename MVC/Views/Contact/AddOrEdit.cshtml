@@ -1,0 +1,65 @@
+﻿@model MVC.Models.MvcEmployeeModel
+@{
+    ViewBag.Title = "AddOrEdit";
+}
+
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(Model => Model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.First_Name)
+            @Html.EditorFor(Model => Model.First_Name)
+            @Html.ValidationMessageFor(Model => Model.First_Name)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.Last_Name)
+            @Html.EditorFor(Model => Model.Last_Name)
+            @Html.ValidationMessageFor(Model => Model.Last_Name)    
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.Email)
+            @Html.EditorFor(Model => Model.Email)
+            @Html.ValidationMessageFor(Model => Model.Email)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.Phone_Number)
+            @Html.EditorFor(Model => Model.Phone_Number)
+            @Html.ValidationMessageFor(Model => Model.Phone_Number)
+        </div>
+
+    <div>
+        @{
+        List<SelectListItem> listItems = new List<SelectListItem>();
+        listItems.Add(new SelectListItem
+            {
+                Text = "Active",
+                Value = "Active"
+            });
+
+        listItems.Add(new SelectListItem
+        {
+            Text = "Inactive",
+            Value = "Inactive"
+        });
+        }
+
+        @Html.DropDownListFor(Model => Model.Status, listItems, "Select")
+    </div>
+        <div class="form-group">
+            <input type="submit" value="submit" class="btn button" />
+            <input type="reset" value="reset" class="btn button" />
+
+        </div>
+    }
+
+</div>
+
+@section scripts
+{
+   @Scripts.Render("~/bundles/jqueryval");
+}
